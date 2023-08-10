@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class=" col-md-6 offset-md-3">
+<h1>Registeration</h1>
+
+<form  method="POST" action="" >
+    {% csrf_token %}
+
+    {% if form.errors %}
+    <div class="alert alert-danger" role="alert">
+        Your Form Has Errors 
+    </div>
+      {% for field in form %}
+      {%if field.errors%}
+      {{field.errors}}
+      {% endif %}
+      {% endfor %}
+
+     {% else %}
+
+    {{ form.as_p }}
+
+     <div >
+         <button type="submit" class="btn btn-primary">register</button>
+     </div>
+     {% endif %}
+</form>
+</div>
+{% endblock %}
