@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if data %}
+<div class="card" style="width: 20rem;">
+    <div class="card-header">
+        <h5 class="card-title">
+        
+            <strong >Name: </strong> <strong>{{data.first_name}} {{data.last_name}}</strong>
+          
+        </h5>
+      </div>
+
+
+
+    <div class="card-body">
+    
+        <strong >Age: </strong>{{data.age}}<br><br>
+        <strong >Email: </strong>{{data.email}}<br><br>
+        <strong >Phone: </strong>{{data.phone}}<br><br>
+        <strong >City: </strong>{{data.city}}<br><br>
+        <strong >Created_at: </strong>{{data.created_at}}<br><br>
+        <strong >Id: </strong>{{data.id}}<br><br>
+      
+      <a href="{% url 'login' %}" class="btn btn-primary">back</a>
+      <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#link">delete</a>
+
+
+      <div class="modal fade" id="link"  aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body">
+                <h3>Are You Sure You Want To Delete Record ?</h3><br>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <a href="{% url 'delete' data.id %}" class="btn btn-danger">delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+</div>
+</div>
+
+{% endif %}
+
+{% endblock %}

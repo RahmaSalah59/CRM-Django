@@ -10,6 +10,7 @@
   <body>
     {% include '__nav.html' %}
     <div class="container" >
+      {% csrf_token %}
       <br/>
        {% if messages %}
             {% for message in messages %}
