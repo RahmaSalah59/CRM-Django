@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import login, logout, authenticate 
 from django.contrib import messages
-from .forms import signup
+from .forms import signup, NewRecord
 from .models import record 
 
 # Create your views here.
@@ -67,3 +67,36 @@ def delete(request,pk):
     else:
         messages.success(request,'You Must Log In First ...')
         return render(request,'home.html',{})
+
+
+def new_record(requset):
+    if requset.user.is_authenticated:
+        form = NewRecord(requset.POST or None)
+        if requset.method == "POST":
+            if form.is_valid():
+                form.save()
+                messages.success(requset,"Record added Successfully . . .")
+                return redirect('login')
+        return render(requset,'add_record.html',{'form':form})
+            
+    else:
+        messages.success(requset,"You Must Log In First ...")
+        return render(requset,'home.html',{})
+
+
+def update(requset,pk):
+    if requset.user.is_authenticated:
+        current = record.objects.get(id=pk)
+        form = NewRecord(requset.POST or None, instance=current )
+        if form.is_valid():
+            form.save()
+            messages.success(requset,"Record updated Successfully . . .")
+            return redirect('login')
+        return render(requset,'add_record.html',{'form':form})
+    else:
+        messages.success(requset,"You Must Log In First ...")
+        return render(requset,'home.html',{})
+
+
+
+

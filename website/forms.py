@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-
+from .models import record
 
 class signup(UserCreationForm):
     email = forms.EmailField(label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Email Address'}))
@@ -32,5 +32,17 @@ class signup(UserCreationForm):
 
 
 
+#create new record padge
+class NewRecord(forms.ModelForm):
+    first_name = forms.CharField(required=True,label="", max_length=100, widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'First Name'}))
+    last_name = forms.CharField(required=True,label="", max_length=100, widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Last Name'}))
+    age = forms.IntegerField(required=True,label="", widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Age'}))
+    email = forms.EmailField(required=True,label="",widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Email'}))
+    phone = forms.IntegerField(required=True,label="",widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Phone'}))
+    city = forms.CharField(required=True,label="", max_length=100, widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'City'}))
 
+    class Meta:
+        model = record
+        fields = ("__all__")
 
+        

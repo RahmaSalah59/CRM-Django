@@ -23,7 +23,7 @@
         <strong >Created_at: </strong>{{data.created_at}}<br><br>
         <strong >Id: </strong>{{data.id}}<br><br>
       
-      <a href="{% url 'login' %}" class="btn btn-primary">back</a>
+      <a href="{% url 'update' data.id %}" class="btn btn-primary">update</a>
       <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#link">delete</a>
 
 
@@ -38,6 +38,8 @@
         </div>
     </div>
 </div>
+<a href="{% url 'login' %}" class="btn btn-secondary">back</a>
+
 
 
 
