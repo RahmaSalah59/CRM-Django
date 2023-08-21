@@ -7,7 +7,7 @@ from .models import record
 
 # Create your views here.
 def home(request):
-    return render(request,'home.html',{})
+    return render(request,'index.html',{})
 
 
 def login_user(request):
@@ -30,7 +30,7 @@ def login_user(request):
 def logout_user(request):
    logout(request)
    messages.success(request,"You Have Been Loged Out . . . ")
-   return render(request, 'home.html',{} )
+   return render(request, 'index.html',{} )
 
 def register(request):
     if request.method == 'POST':
@@ -56,17 +56,17 @@ def customer(request,pk):
         return render (request,'record.html',{'data':data}) 
     else:
         messages.success(request,'You Must Log In First ...')
-        return render(request,'home.html',{})
+        return render(request,'index.html',{})
     
 def delete(request,pk):
     if request.user.is_authenticated:
         data =record.objects.get(id=pk)
         data.delete()
         messages.success(request,"Customer Deleted Successfully...")
-        return render(request,'home.html',{})
+        return render(request,'index.html',{})
     else:
         messages.success(request,'You Must Log In First ...')
-        return render(request,'home.html',{})
+        return render(request,'index.html',{})
 
 
 def new_record(requset):
@@ -81,7 +81,7 @@ def new_record(requset):
             
     else:
         messages.success(requset,"You Must Log In First ...")
-        return render(requset,'home.html',{})
+        return render(requset,'index.html',{})
 
 
 def update(requset,pk):
@@ -95,7 +95,7 @@ def update(requset,pk):
         return render(requset,'add_record.html',{'form':form})
     else:
         messages.success(requset,"You Must Log In First ...")
-        return render(requset,'home.html',{})
+        return render(requset,'index.html',{})
 
 
 
